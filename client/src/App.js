@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WorkspaceContainer from './components/WorkspaceContainer';
 import WorkspaceDetails from './components/WorkspaceDetails';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import TaskTable from './components/TaskTable';
 import Login from './pages/Login';
 import './App.css'; 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { Table } from '@mui/material';
 
 function App() {
   const [workspaces, setWorkspaces] = useState([]);
@@ -46,6 +48,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/table" element={<TaskTable />} />
         <Route
           path="/"
           element={

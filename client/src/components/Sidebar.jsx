@@ -10,14 +10,14 @@ import ListItemText from '@mui/material/ListItemText';
 import TaskIcon from '@mui/icons-material/Task';
 import ChatIcon from '@mui/icons-material/Chat';
 import EditIcon from '@mui/icons-material/Edit';
-import { VideoCall } from '@mui/icons-material';
+import VideoCall from '@mui/icons-material/VideoCall';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'; 
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import './Sidebar.css';
 
-const Navbar = ({ onAddWorkspace }) => {
+const Sidebar = ({ onTaskClick }) => {
     const handleLogout = () => {
         console.log('Logout button clicked');
     };
@@ -50,7 +50,7 @@ const Navbar = ({ onAddWorkspace }) => {
                 >
                     <Avatar
                         alt="Profile Picture"
-                        sx={{ width: 35, height: 35, marginRight: 2}}
+                        sx={{ width: 35, height: 35, marginRight: 2 }}
                     />
                     <Typography variant="h6" className="profile-name">Tejas</Typography>
                 </Box>
@@ -67,6 +67,7 @@ const Navbar = ({ onAddWorkspace }) => {
                                 },
                                 color: 'white',
                             }}
+                            onClick={onTaskClick} // Pass the click handler
                         >
                             <ListItemIcon sx={{ color: 'inherit' }}>
                                 <TaskIcon />
@@ -123,7 +124,6 @@ const Navbar = ({ onAddWorkspace }) => {
 
                 <Divider />
 
-
                 {/* Logout Button */}
                 <Box sx={{ marginTop: 'auto', padding: 2 }}>
                     <Button
@@ -139,6 +139,6 @@ const Navbar = ({ onAddWorkspace }) => {
             </Box>
         </Drawer>
     );
-}
+};
 
-export default Navbar;
+export default Sidebar;
