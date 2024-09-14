@@ -9,6 +9,7 @@ import './App.css'; // Import your styles
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import api from './utils/axios';
+import TaskTable from './components/TableTask';
 
 function App() {
   const [workspaces, setWorkspaces] = useState([]);
@@ -41,11 +42,11 @@ function App() {
   const handleAddWorkspace = async () => {
     if (workspaceName.trim() && workspacePurpose.trim()) {
       try {
-        const response = await api.post('/workspaces', {
+        const response = await api.post('/workspace/create', {
           name: workspaceName,
           purpose: workspacePurpose,
         });
-        setWorkspaces((prevWorkspaces) => [...prevWorkspaces, response.data]);
+        setWorkspaces((prevWorkspaces) => [...prevWorkspaces, response.data.workspace]);
         setWorkspaceName('');
         setWorkspacePurpose('');
       } catch (error) {
@@ -53,6 +54,7 @@ function App() {
       }
     }
   };
+  
   
   const handleLogout = () => {
     localStorage.removeItem('jwtToken');
@@ -125,4 +127,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

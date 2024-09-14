@@ -10,7 +10,6 @@ const generateToken = (id) => {
     });
 };
 
-
 const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -27,7 +26,7 @@ const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
         });
-
+        
         await user.save();
 
         const token = generateToken(user._id);
@@ -41,7 +40,7 @@ const registerUser = async (req, res) => {
             },
         });
     } catch (error) {
-        console.error(error);
+        console.error('Error in registerUser:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };
@@ -72,7 +71,7 @@ const loginUser = async (req, res) => {
             },
         });
     } catch (error) {
-        console.error(error);
+        console.error('Error in loginUser:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };
