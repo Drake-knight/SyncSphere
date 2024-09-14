@@ -7,81 +7,70 @@
   
   /* Table styling */
   table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
   }
   
   th, td {
-      border: 1px solid #4A5FBD;
-      padding: 8px;
-      text-align: left;
+    border: 1px solid #4A5FBD;
+    padding: 8px;
+    text-align: left;
   }
   
   th {
-      background-color: #FF5353;
-      font-weight: bold;
+    background-color: #FF5353;
+    font-weight: bold;
   }
   
   td {
-      background-color: #0B051D;
+    background-color: #0B051D;
   }
   
   /* Status column styling */
   td.status {
-      color: rgb(0, 255, 21); /* Red color for status text */
-      font-weight: bold;
+    color: rgb(0, 255, 21); /* Red color for status text */
+    font-weight: bold;
   }
   
   /* Form styling */
   form {
-      display: flex;
-      flex-direction: column;
-      max-width: 1000px;
-      /* margin: 0 auto; Removed to prevent centering */
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
   }
   
+  /* Form group styling */
   .form-group {
-      display: flex;
-      flex-wrap: wrap; /* Allows input fields to wrap if needed */
-      gap: 10px; /* Spacing between input fields */
-      margin-bottom: 20px;
-      padding: 10px; /* Space between input fields and the button */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    margin-bottom: 20px;
+    padding: 10px;
   }
-  
   input, select {
- /* Allow inputs to grow and shrink */
-      padding: 1px;
-      font-size: 16px;
+    padding: 8px;
+    font-size: 16px;
+    width: 76%;
+    box-sizing: border-box;
+    /* border: 1px solid #ccc;s Light gray border for consistency */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #343849; /* Dark background color for all inputs */
+    /* color: white; White text color for contrast */
   }
   
   button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-      width: 100px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100px;
   }
   
   button:hover {
-      background-color: #0056b3;
-  }
-  
-  input, select {/* Allow inputs to grow and shrink */
-      padding: 4px;
-  }
-  select{
-    flex: 1;
-  }
-  
-  /* Styling for select element */
-  select {
-      background-color: #343849; /* Red background color */
-      color: white; /* White text color for contrast */
-      border: 1px solid #ccc; /* Light gray border */
-      border-radius: 4px; /* Rounded corners */
+    background-color: #0056b3;
   }
   

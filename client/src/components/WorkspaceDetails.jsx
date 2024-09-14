@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Chat from './Chat'; 
+import TableTask from './TableTask';
 
 const WorkspaceDetails = () => {
   const location = useLocation();
@@ -11,7 +12,6 @@ const WorkspaceDetails = () => {
 
   useEffect(() => {
     if (workspace._id) {
-    
       localStorage.setItem('selectedWorkspaceId', workspace._id);
     }
   }, [workspace]);
@@ -20,10 +20,11 @@ const WorkspaceDetails = () => {
     setShowChat(true);
     setShowTasks(false); 
   }
-//   const handleShowTasks = () => {
-//     setShowTasks(true);
-//     setShowChat(false); 
-//   };
+
+  const handleShowTasks = () => {
+    setShowTasks(true);
+    setShowChat(false); 
+  };
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
@@ -33,7 +34,6 @@ const WorkspaceDetails = () => {
           {workspace.name} 
         </h2>
 
-    
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px', marginBottom: '20px' }}>
           <div style={{ flex: 1, minWidth: '250px' }}>
             <label style={{ display: 'block', fontSize: '1.2rem', color: '#FF5353', marginBottom: '5px' }}>Name:</label>
@@ -55,27 +55,31 @@ const WorkspaceDetails = () => {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '30px' }}>
-          {/* <button
+          <button
             style={{
-              padding: '10px 20px',
+              width: '400px', // Set width here
+              padding: '10px',
               backgroundColor: showTasks ? '#4A5FBD' : '#FF5353',
               color: 'white',
               border: 'none',
               borderRadius: '4px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontSize: '1rem'
             }}
             onClick={handleShowTasks}
           >
             Show Tasks
-          </button> */}
+          </button>
           <button
             style={{
-              padding: '10px 20px',
+              width: '400px', // Set width here
+              padding: '10px',
               backgroundColor: showChat ? '#4A5FBD' : '#FF5353',
               color: 'white',
               border: 'none',
               borderRadius: '4px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontSize: '1rem'
             }}
             onClick={handleShowChat}
           >
@@ -83,18 +87,10 @@ const WorkspaceDetails = () => {
           </button>
         </div>
 
-        {showChat && (
-          <div style={{ marginTop: '30px' }}>
-            <Chat /> 
-          </div>
-        )}
-
-
-        {/* {showTasks && (
-          <div style={{ marginTop: '30px' }}>
-            <p>Tasks component will go here.</p>
-          </div>
-        )} */}
+        <div style={{ marginTop: '30px' }}>
+          {showTasks && <TableTask />}
+          {showChat && <Chat />} 
+        </div>
       </div>
     </div>
   );
