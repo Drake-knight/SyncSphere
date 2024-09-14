@@ -15,7 +15,6 @@ console.log(names);
   const handleGoToWorkspace = (workspace) => {
     navigate(`/workspace/${workspace.name}`, { state: { workspace } });
   };
-
   return (
     <div style={{ paddingBottom: '60px' }}> {/* Ensure padding for content */}
       <div style={{ textAlign: 'center', paddingTop: '20px' }}>
@@ -106,6 +105,3 @@ console.log(names);
 };
 
 export default WorkspaceContainer;
-
-
-  
