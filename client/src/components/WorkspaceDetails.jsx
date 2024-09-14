@@ -8,7 +8,7 @@ const WorkspaceDetails = () => {
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
-      <Sidebar style={{ flexShrink: 0 }} />
+      <Sidebar style={{ flexShrink: 0 }} /> {/* Ensures sidebar does not shrink */}
       <div style={{ flex: 1, padding: '20px' }}>
         <h2 style={{ fontSize: '2rem', color: '#4A5FBD', marginBottom: '30px' }}>Workspace Details</h2>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>

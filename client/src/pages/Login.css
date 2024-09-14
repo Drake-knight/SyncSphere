@@ -12,8 +12,8 @@ body {
 
 .login {
     background-color: #3438497f;
-    border: 1px solid transparent; 
-    border-radius: 1%;
+    border: 1px solid transparent; /* Set a transparent border to use the gradient */
+    border-radius: 1%; /* Optional: rounded corners */
     width: 30vw;
     height: 50vh;
     display: flex;
@@ -74,18 +74,13 @@ a:hover {
     background-color: var(--primary);
     border-radius: 5px;
 }
-
-/* Login.css */
-
-/* Login.css */
-
 .login h1 {
-    font-style: italic; /* Apply italic style */
-    font-family: 'Brush Script', cursive; /* Apply a cursive font */
-    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Gradient from purple to blue */
-    -webkit-background-clip: text; /* Clip background to text */
-    -webkit-text-fill-color: transparent; /* Make text color transparent to show gradient */
-    font-size: 3rem; /* Adjust font size as needed */
-    text-align: center; /* Center the text */
-    margin-bottom: 1rem; /* Add space below the heading */
+    font-style: italic; 
+    font-family: 'Brush Script', cursive; 
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    text-align: center; 
+    margin-bottom: 1rem; 
 }

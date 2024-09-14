@@ -63,24 +63,24 @@ body {
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure the content takes the full viewport height */
   }
   .App h1{
-    font-style: italic; 
-    font-family: 'Brush Script', cursive; 
-    background: linear-gradient(90deg, #6a11cb, #2575fc); 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 1rem; 
+    font-style: italic; /* Apply italic style */
+    font-family: 'Brush Script', cursive; /* Apply a cursive font */
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text color transparent to show gradient */
+    font-size: 3rem; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
+    margin-bottom: 1rem; /* Add space below the heading */
   }
   
   .add-workspace-section {
     display: flex;
     flex-direction: row; 
     align-items: center;
-    margin-bottom: 20px; 
+    margin-bottom: 20px; /* Space between the input section and the workspace display */
     padding: 20px;
   }
   
@@ -104,13 +104,13 @@ body {
     background-color: #357ab8;
   }
   .wspcD h1{
-    font-style: italic; 
-    font-family: 'Brush Script', cursive; 
-    background: linear-gradient(90deg, #6a11cb, #2575fc); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    font-size: 3rem;
-    text-align: center; 
+    font-style: italic; /* Apply italic style */
+    font-family: 'Brush Script', cursive; /* Apply a cursive font */
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text color transparent to show gradient */
+    font-size: 3rem; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
     margin-bottom: 1rem;
     padding: 10px;
     width: 1000px;
