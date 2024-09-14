@@ -2,18 +2,22 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // Import ExitToAppIcon
 import { useNavigate } from 'react-router-dom';
 
 const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
   const navigate = useNavigate();
+  
+console.log(workspaces);
 
+const names = workspaces.map(workspace => workspace.name);
+console.log(names);
   const handleGoToWorkspace = (workspace) => {
     navigate(`/workspace/${workspace.name}`, { state: { workspace } });
   };
 
   return (
-    <div style={{ paddingBottom: '60px' }}> 
+    <div style={{ paddingBottom: '60px' }}> {/* Ensure padding for content */}
       <div style={{ textAlign: 'center', paddingTop: '20px' }}>
         <Typography variant="h4" sx={{ marginBottom: 3 }}>
           Your Workspaces
@@ -53,9 +57,6 @@ const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
                 <Typography variant="h6" sx={{ color: '#333', marginBottom: 1 }}>
                   Name: {workspace.name}
                 </Typography>
-                <Typography variant="body1" sx={{ color: '#666', wordBreak: 'break-word' }}>
-                  Purpose: {workspace.purpose}
-                </Typography>
               </div>
               <Box sx={{ marginTop: 2, display: 'flex', gap: 1 }}>
                 <Button
@@ -87,8 +88,8 @@ const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
           padding:0,
           display: 'flex',
           justifyContent: 'flex-end',
-          backgroundColor: '#FF5353', 
-          boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)', 
+          backgroundColor: '#FF5353', // Optional: adds background to avoid overlap issues
+          boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)', // Optional: adds shadow for better visibility
         }}
       >
         <Button
@@ -105,3 +106,6 @@ const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
 };
 
 export default WorkspaceContainer;
+
+
+  

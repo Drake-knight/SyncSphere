@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { authenticate } from "../utils/AuthHandler";
-import "./Login.css";
+import { register } from "../utils/AuthHandler";
+import "./Register.css";
 import { useLocation } from "wouter";
 
-function Login({ setIsLoggedIn }) {
+function Register({ setIsLoggedIn }) {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
     const [, navigate] = useLocation();
+
+    const updateName = (event) => {
+        setName(event.target.value);
+    };
 
     const updateEmail = (event) => {
         setEmail(event.target.value);
@@ -20,11 +25,11 @@ function Login({ setIsLoggedIn }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsDisabled(true);
-        const response = await authenticate({ email, password });
+        const response = await register({ name, email, password });
         setIsDisabled(false);
         if (response && response.token) {
             localStorage.setItem("jwtToken", response.token);
-            localStorage.setItem("userName", response.name); 
+            localStorage.setItem("userName", response.name);
             setIsLoggedIn(true);
             navigate("/");
         }
@@ -32,9 +37,18 @@ function Login({ setIsLoggedIn }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="login">
+            <div className="register">
                 <h1>SyncSphere</h1>
-                <div className="sign-in-info">Sign in using your email account</div>
+                <div className="sign-up-info">Sign up using your email account</div>
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    onChange={updateName}
+                    autoComplete="on"
+                    disabled={isDisabled}
+                />
                 <input
                     type="email"
                     name="email"
@@ -53,10 +67,13 @@ function Login({ setIsLoggedIn }) {
                     autoComplete="on"
                     disabled={isDisabled}
                 />
-                <input type="submit" value="LOGIN" id="login-button" disabled={isDisabled} />
+                <input type="submit" value="REGISTER" id="register-button" disabled={isDisabled} />
+                <div className="login-redirect">
+                    Already have an account? <a href="/login">Login</a>
+                </div>
             </div>
         </form>
     );
 }
 
-export default Login;
+export default Register;
