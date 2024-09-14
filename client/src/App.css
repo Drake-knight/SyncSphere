@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/*Website colours and font*/
+:root {
+    --text: #FFF;
+    --text-50: rgba(255, 255, 255, 0.5);
+    --primary: #4A5FBD;
+    --accent: #FF5353;
+    --secondary: #343849;
+    --secondary-50: rgba(52, 56, 73, 0.5);
+    --neutral: #0B051D;
+    font-family: "Inter", sans-serif;
+    font-weight: 200;
+}
+
+* {
+    color: var(--text);
+}
+
+body {
+    background-color: var(--neutral);
+}
+
+.test1 {
+    border: 2px solid red;
+}
+
+.test2 {
+    border: 2px solid white;
+}
+
+.add-workspace-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .workspace-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #4A5FBD;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    width: 500px;
+  }
+  
+  .add-workspace-button {
+    padding: 10px 20px;
+    background-color: #4A5FBD;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-workspace-button:hover {
+    background-color: #3c4da7;
+  }
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    min-height: 100vh; /* Ensure the content takes the full viewport height */
+  }
+  .App h1{
+    font-style: italic; /* Apply italic style */
+    font-family: 'Brush Script', cursive; /* Apply a cursive font */
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text color transparent to show gradient */
+    font-size: 3rem; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
+    margin-bottom: 1rem; /* Add space below the heading */
+  }
+  
+  .add-workspace-section {
+    display: flex;
+    flex-direction: row; /* Align input and button horizontally */
+    align-items: center;
+    margin-bottom: 20px; /* Space between the input section and the workspace display */
+    padding: 20px;
+  }
+  
+  .workspace-input {
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .add-workspace-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4A5FBD;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .add-workspace-button:hover {
+    background-color: #357ab8;
+  }
+  .wspcD h1{
+    font-style: italic; /* Apply italic style */
+    font-family: 'Brush Script', cursive; /* Apply a cursive font */
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text color transparent to show gradient */
+    font-size: 3rem; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
+    margin-bottom: 1rem;
+    padding: 10px;
+    width: 1000px;
+  }
+  
+  

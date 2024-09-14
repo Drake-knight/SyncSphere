@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login {
+    background-color: #3438497f;
+    border: 1px solid transparent; /* Set a transparent border to use the gradient */
+    border-radius: 1%; /* Optional: rounded corners */
+    width: 30vw;
+    height: 50vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-image: linear-gradient(to right, #4A5FBD, #FF5353) 1; /* Gradient border */
+}
+
+
+
+.logo {
+    width: 33%;
+}
+
+.sign-in-info {
+    size: 20px;
+    opacity: 0.8;
+}
+
+input {
+    background-color: var(--secondary);
+    border: none;
+    height: 9%;
+    width: 76%;
+    border-radius: 5px;
+    outline:none;
+    font-size: 20px;
+    padding-left: 17px;
+}
+
+input::placeholder {
+    color: var(--text);
+    font-size: 15px;
+}
+
+input:focus {
+    border: 3px solid var(--primary);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password {
+    width:76%;
+    font-size: 16px;
+}
+
+#login-button {
+    width: 76%;
+    height: 10%;
+    font-size: 20px;
+    background-color: var(--primary);
+    border-radius: 5px;
+}
+
+/* Login.css */
+
+/* Login.css */
+
+.login h1 {
+    font-style: italic; /* Apply italic style */
+    font-family: 'Brush Script', cursive; /* Apply a cursive font */
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Gradient from purple to blue */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text color transparent to show gradient */
+    font-size: 3rem; /* Adjust font size as needed */
+    text-align: center; /* Center the text */
+    margin-bottom: 1rem; /* Add space below the heading */
+}

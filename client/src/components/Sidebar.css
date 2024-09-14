@@ -1,0 +1,19 @@
+.sidebar {
+    background-color: #0B051D;
+    width: 180px;
+    height: 100%;
+    color: white; 
+}
+
+
+.sidebar .MuiListItemIcon-root {
+    color: white; 
+}
+
+/* Gradient for profile name */
+.sidebar .profile-name {
+    background: linear-gradient(90deg, #50d0ed, #f55f96);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
