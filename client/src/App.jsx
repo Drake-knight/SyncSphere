@@ -18,7 +18,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  
   useEffect(() => {
     if (isLoggedIn) {
       const fetchWorkspaces = async () => {
@@ -41,11 +40,11 @@ function App() {
   const handleAddWorkspace = async () => {
     if (workspaceName.trim() && workspacePurpose.trim()) {
       try {
-        const response = await api.post('/workspaces', {
+        const response = await api.post('/workspace/create', {
           name: workspaceName,
           purpose: workspacePurpose,
         });
-        setWorkspaces((prevWorkspaces) => [...prevWorkspaces, response.data]);
+        setWorkspaces((prevWorkspaces) => [...prevWorkspaces, response.data.workspace]);
         setWorkspaceName('');
         setWorkspacePurpose('');
       } catch (error) {
