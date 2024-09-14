@@ -82,12 +82,13 @@ const joinWorkspace = async (req, res) => {
         res.status(500).json({ message: 'Error joining workspace' });
     }
 };
-
 const listWorkspaces = async (req, res) => {
     const userId = req.user.id;
+    console.log(userId);
 
     try {
         const workspaces = await Workspace.find({ users: userId });
+        console.log(workspaces);
         res.status(200).json({ workspaces });
     } catch (error) {
         res.status(500).json({ message: 'Error fetching workspaces' });

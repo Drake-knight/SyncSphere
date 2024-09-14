@@ -7,7 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
   const navigate = useNavigate();
+  
+console.log(workspaces);
 
+const names = workspaces.map(workspace => workspace.name);
+console.log(names);
   const handleGoToWorkspace = (workspace) => {
     navigate(`/workspace/${workspace.name}`, { state: { workspace } });
   };
@@ -52,9 +56,6 @@ const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
               <div style={{ flex: 1 }}>
                 <Typography variant="h6" sx={{ color: '#333', marginBottom: 1 }}>
                   Name: {workspace.name}
-                </Typography>
-                <Typography variant="body1" sx={{ color: '#666', wordBreak: 'break-word' }}>
-                  Purpose: {workspace.purpose}
                 </Typography>
               </div>
               <Box sx={{ marginTop: 2, display: 'flex', gap: 1 }}>
@@ -105,3 +106,6 @@ const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
 };
 
 export default WorkspaceContainer;
+
+
+  

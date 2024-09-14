@@ -10,7 +10,6 @@
     color: white; 
 }
 
-/* Gradient for profile name */
 .sidebar .profile-name {
     background: linear-gradient(90deg, #50d0ed, #f55f96);
     -webkit-background-clip: text;

@@ -10,16 +10,20 @@ import ListItemText from '@mui/material/ListItemText';
 import TaskIcon from '@mui/icons-material/Task';
 import ChatIcon from '@mui/icons-material/Chat';
 import EditIcon from '@mui/icons-material/Edit';
-import { VideoCall } from '@mui/icons-material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'; 
 import './Sidebar.css';
 
-const Navbar = ({ onAddWorkspace }) => {
+const Sidebar = ({ onAddWorkspace }) => {
+    const userName = localStorage.getItem("userName");
+
     const handleLogout = () => {
         console.log('Logout button clicked');
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("userName");
+        window.location.reload();
     };
 
     return (
@@ -38,7 +42,6 @@ const Navbar = ({ onAddWorkspace }) => {
                     borderRight: '1px solid #4A5FBD'
                 }}
             >
-                {/* Profile Section */}
                 <Box
                     sx={{
                         display: 'flex',
@@ -52,12 +55,11 @@ const Navbar = ({ onAddWorkspace }) => {
                         alt="Profile Picture"
                         sx={{ width: 35, height: 35, marginRight: 2}}
                     />
-                    <Typography variant="h6" className="profile-name">Tejas</Typography>
+                    <Typography variant="h6" className="profile-name">{userName}</Typography>
                 </Box>
 
                 <Divider />
 
-                {/* Navigation Items */}
                 <List>
                     <ListItem disablePadding>
                         <ListItemButton
@@ -113,16 +115,11 @@ const Navbar = ({ onAddWorkspace }) => {
                                 color: 'white',
                             }}
                         >
-                            <ListItemIcon sx={{ color: 'inherit' }}>
-                                <VideoCall />
-                            </ListItemIcon>
-                            <ListItemText primary={"Video Call"} />
                         </ListItemButton>
                     </ListItem>
                 </List>
 
                 <Divider />
-
 
                 {/* Logout Button */}
                 <Box sx={{ marginTop: 'auto', padding: 2 }}>
@@ -141,4 +138,4 @@ const Navbar = ({ onAddWorkspace }) => {
     );
 }
 
-export default Navbar;
+export default Sidebar;
