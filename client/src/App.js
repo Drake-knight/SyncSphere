@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import WorkspaceContainer from './components/WorkspaceContainer';
 import WorkspaceDetails from './components/WorkspaceDetails';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // Import ExitToAppIcon
-import Login from './pages/Login'; // Import Login component
-import './App.css'; // Import your styles
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import Login from './pages/Login';
+import './App.css'; 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
@@ -39,7 +39,6 @@ function App() {
   };
 
   const handleLogout = () => {
-    // Handle logout logic here
     console.log('Logged out');
   };
 
