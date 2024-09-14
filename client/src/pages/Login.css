@@ -12,8 +12,8 @@ body {
 
 .login {
     background-color: #3438497f;
-    border: 1px solid transparent; /* Set a transparent border to use the gradient */
-    border-radius: 1%; /* Optional: rounded corners */
+    border: 1px solid transparent; 
+    border-radius: 1%;
     width: 30vw;
     height: 50vh;
     display: flex;
@@ -74,13 +74,14 @@ a:hover {
     background-color: var(--primary);
     border-radius: 5px;
 }
+
 .login h1 {
-    font-style: italic; 
+    font-style: italic;
     font-family: 'Brush Script', cursive; 
-    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    background: linear-gradient(90deg, #6a11cb, #2575fc); 
     -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;
-    font-size: 3rem;
+    -webkit-text-fill-color: transparent; 
+    font-size: 3rem; 
     text-align: center; 
     margin-bottom: 1rem; 
 }

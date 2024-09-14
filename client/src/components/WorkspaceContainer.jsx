@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // Import ExitToAppIcon
 import { useNavigate } from 'react-router-dom';
 
 const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
@@ -17,7 +17,7 @@ console.log(names);
   };
 
   return (
-    <div style={{ paddingBottom: '60px' }}> 
+    <div style={{ paddingBottom: '60px' }}> {/* Ensure padding for content */}
       <div style={{ textAlign: 'center', paddingTop: '20px' }}>
         <Typography variant="h4" sx={{ marginBottom: 3 }}>
           Your Workspaces
@@ -88,8 +88,8 @@ console.log(names);
           padding:0,
           display: 'flex',
           justifyContent: 'flex-end',
-          backgroundColor: '#FF5353', 
-          boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)', 
+          backgroundColor: '#FF5353', // Optional: adds background to avoid overlap issues
+          boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)', // Optional: adds shadow for better visibility
         }}
       >
         <Button
