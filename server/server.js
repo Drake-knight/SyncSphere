@@ -29,14 +29,20 @@ app.use(router);
 io.on('connection', (socket) => {
     console.log('New client connected');
 
-    socket.on('joinWorkspace', (workspaceId) => {
-        socket.join(workspaceId);
+    socket.on('edit', (content) => {
+        io.emit('updateContent', content);
     });
 
-    socket.on('sendMessage', (message) => {
-        console.log('Message received:', message);
-        console.log('Workspace:', message.workspace);
-        io.to(message.workspace).emit('message', message);
+    socket.on('bold', (isBold) => {
+        io.emit('updateStyleBold', isBold);
+    });
+
+    socket.on('italic', (isItalic) => {
+        io.emit('updateStyleItalic', isItalic);
+    });
+
+    socket.on('underline', (isUnderline) => {
+        io.emit('updateStyleUnderline', isUnderline);
     });
 
     socket.on('disconnect', () => {

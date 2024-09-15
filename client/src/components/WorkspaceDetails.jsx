@@ -3,12 +3,14 @@ import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Chat from './Chat'; 
 import TableTask from './TableTask';
+import CollaborativeEditor from './CollaborativeEditor';
 
 const WorkspaceDetails = () => {
   const location = useLocation();
   const { workspace } = location.state;
   const [showChat, setShowChat] = useState(false); 
   const [showTasks, setShowTasks] = useState(false); 
+  const [showEditor, setShowEditor] = useState(false);
 
   useEffect(() => {
     if (workspace._id) {
@@ -19,12 +21,20 @@ const WorkspaceDetails = () => {
   const handleShowChat = () => {
     setShowChat(true);
     setShowTasks(false); 
+    setShowEditor(false);
   }
 
   const handleShowTasks = () => {
     setShowTasks(true);
-    setShowChat(false); 
+    setShowChat(false);
+    setShowEditor(false); 
   };
+
+  const handleShowEditor = () => {
+    setShowChat(false);
+    setShowTasks(false);
+    setShowEditor(true);
+  }
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
@@ -85,11 +95,27 @@ const WorkspaceDetails = () => {
           >
             Open Chat
           </button>
+          <button
+            style={{
+              width: '400px', // Set width here
+              padding: '10px',
+              backgroundColor: showEditor ? '#4A5FBD' : '#FF5353',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '1rem'
+            }}
+            onClick={handleShowEditor}
+          >
+            Open Editor
+          </button>
         </div>
 
         <div style={{ marginTop: '30px' }}>
           {showTasks && <TableTask />}
           {showChat && <Chat />} 
+          {showEditor && <CollaborativeEditor />}
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { createWorkspace, inviteUser, listWorkspaces, joinWorkspace, getAllMembe
 import { registerUser, loginUser } from '../controllers/auth.js';
 import { createTask, getTasks, updateTask, deleteTask, getTasksByWorkspace } from '../controllers/task.js';
 import { sendMessage, getMessages } from '../controllers/message.js';
+import { saveDocument, loadDocument } from '../controllers/document.js';
 import auth from '../middleware.js';
 
 const router = Router();
@@ -25,5 +26,11 @@ router.delete('/tasks/:id', auth, deleteTask);
 
 router.post('/messages', auth, sendMessage);
 router.get('/messages', auth, getMessages);
+
+
+
+
+router.post('/saveDocument', saveDocument);
+router.get('/loadDocument/:workspaceId', loadDocument);
 export default router;
 

@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import WorkspaceContainer from './components/WorkspaceContainer';
 import WorkspaceDetails from './components/WorkspaceDetails';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // Import ExitToAppIcon
-import Login from './pages/Login'; // Import Login component
-import Register from './pages/Register'; // Import Register component
-import './App.css'; // Import your styles
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'; 
+import Login from './pages/Login';
+import Register from './pages/Register'; 
+import './App.css'; 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import api from './utils/axios';
-import TaskTable from './components/TableTask';
 
 function App() {
   const [workspaces, setWorkspaces] = useState([]);
@@ -19,6 +18,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  
   useEffect(() => {
     if (isLoggedIn) {
       const fetchWorkspaces = async () => {
