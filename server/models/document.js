@@ -8,7 +8,7 @@ const documentSchema = new mongoose.Schema({
         italic: { type: Boolean, default: false },
         underline: { type: Boolean, default: false }
     }
-}, { timestamps: true }); // Added timestamps
+}, { timestamps: true });
 
 const Document = mongoose.model('Document', documentSchema);
 

@@ -13,14 +13,14 @@ const server = createServer(app);
 
 const io = new socketIo(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: process.env.FRONTEND,
         methods: ['GET', 'POST'],
         allowedHeaders: ['Authorization'],
         credentials: true,
     },
 });
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: process.env.FRONTEND, }));
 app.use(json());
 app.use(router);
 

@@ -5,7 +5,7 @@ import './CollaborativeEditor.css';
 import debounce from 'lodash.debounce';
 import jsPDF from 'jspdf';
 
-const socket = io('http://localhost:5100');
+const socket = io(process.env.REACT_APP_BACKEND_URL);
 
 const CollaborativeEditor = () => {
     const [content, setContent] = useState('');

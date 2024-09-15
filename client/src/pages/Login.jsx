@@ -7,6 +7,7 @@ function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const [, navigate] = useLocation();
 
     const updateEmail = (event) => {
@@ -20,6 +21,7 @@ function Login({ setIsLoggedIn }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsDisabled(true);
+        setErrorMessage("");
         const response = await authenticate({ email, password });
         setIsDisabled(false);
         if (response && response.token) {
@@ -27,6 +29,8 @@ function Login({ setIsLoggedIn }) {
             localStorage.setItem("userName", response.name); 
             setIsLoggedIn(true);
             navigate("/");
+        } else {
+            setErrorMessage("Invalid email or password. Please try again.");
         }
     };
 
@@ -53,7 +57,13 @@ function Login({ setIsLoggedIn }) {
                     autoComplete="on"
                     disabled={isDisabled}
                 />
+                {errorMessage && (
+                    <div className="error-message">{errorMessage}</div>
+                )}
                 <input type="submit" value="LOGIN" id="login-button" disabled={isDisabled} />
+                <div className="login-redirect">
+                    Don't have an account? <a href="/register">Register</a>
+                </div>
             </div>
         </form>
     );

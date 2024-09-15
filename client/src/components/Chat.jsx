@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import api from '../utils/axios'; 
 import { Container, TextField, Button, List, ListItem, ListItemText, Paper, Typography, Divider } from '@mui/material';
 
-const socket = io('http://localhost:5100', {
+const socket = io(process.env.REACT_APP_BACKEND_URL, {
     transports: ['websocket'],
 });
 

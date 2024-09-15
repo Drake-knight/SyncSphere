@@ -8,6 +8,7 @@ function Register({ setIsLoggedIn }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const [, navigate] = useLocation();
 
     const updateName = (event) => {
@@ -24,6 +25,10 @@ function Register({ setIsLoggedIn }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (password.length < 8) {
+            setErrorMessage("Password must be at least 8 characters long.");
+            return;
+        }
         setIsDisabled(true);
         const response = await register({ name, email, password });
         setIsDisabled(false);
@@ -32,6 +37,8 @@ function Register({ setIsLoggedIn }) {
             localStorage.setItem("userName", response.name);
             setIsLoggedIn(true);
             navigate("/");
+        } else {
+            setErrorMessage("Registration failed. Please try again.");
         }
     };
 
@@ -67,6 +74,9 @@ function Register({ setIsLoggedIn }) {
                     autoComplete="on"
                     disabled={isDisabled}
                 />
+                {errorMessage && (
+                    <div className="error-message">{errorMessage}</div>
+                )}
                 <input type="submit" value="REGISTER" id="register-button" disabled={isDisabled} />
                 <div className="login-redirect">
                     Already have an account? <a href="/login">Login</a>
