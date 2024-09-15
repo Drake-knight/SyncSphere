@@ -63,7 +63,7 @@ const Chat = () => {
             };
             try {
                 await api.post('/messages', newMessage);
-                setMessage(''); // Clear the input field after sending
+                setMessage(''); 
             } catch (error) {
                 console.error('Error sending message:', error);
             }
@@ -106,7 +106,7 @@ const Chat = () => {
                     }}
                     placeholder="Type a message..."
                     style={{ marginRight: '10px', color: 'white', borderColor: '#4A5FBD' }}
-                    InputProps={{ style: { color: 'white' } }} // Ensures text inside input is white
+                    InputProps={{ style: { color: 'white' } }} 
                 />
                 <Button
                     variant="contained"

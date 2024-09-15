@@ -44,12 +44,20 @@ io.on('connection', (socket) => {
     socket.on('underline', (isUnderline) => {
         io.emit('updateStyleUnderline', isUnderline);
     });
+    socket.on('joinWorkspace', (workspaceId) => {
+        socket.join(workspaceId);
+    });
+
+    socket.on('sendMessage', (message) => {
+        console.log('Message received:', message);
+        console.log('Workspace:', message.workspace);
+        io.to(message.workspace).emit('message', message);
+    });
 
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
 });
-
 
 
 const connectDB = async () => {
