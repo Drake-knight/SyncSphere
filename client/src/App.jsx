@@ -11,7 +11,6 @@ import api from './utils/axios';
 function App() {
   const [workspaces, setWorkspaces] = useState([]);
   const [workspaceName, setWorkspaceName] = useState('');
-  const [workspacePurpose, setWorkspacePurpose] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('jwtToken'));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -37,15 +36,13 @@ function App() {
   }, [isLoggedIn]);
 
   const handleAddWorkspace = async () => {
-    if (workspaceName.trim() && workspacePurpose.trim()) {
+    if (workspaceName.trim()) {
       try {
         const response = await api.post('/workspace/create', {
-          name: workspaceName,
-          purpose: workspacePurpose,
+          name: workspaceName
         });
         setWorkspaces((prevWorkspaces) => [...prevWorkspaces, response.data.workspace]);
         setWorkspaceName('');
-        setWorkspacePurpose('');
       } catch (error) {
         console.error('Error adding workspace:', error);
       }
