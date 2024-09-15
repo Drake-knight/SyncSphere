@@ -30,13 +30,14 @@ function Register({ setIsLoggedIn }) {
             return;
         }
         setIsDisabled(true);
+        setErrorMessage(""); 
         const response = await register({ name, email, password });
         setIsDisabled(false);
         if (response && response.token) {
             localStorage.setItem("jwtToken", response.token);
-            localStorage.setItem("userName", response.name);
+            localStorage.setItem("userName", response.name); 
             setIsLoggedIn(true);
-            navigate("/");
+            navigate("/"); 
         } else {
             setErrorMessage("Registration failed. Please try again.");
         }

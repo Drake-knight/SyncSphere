@@ -18,9 +18,8 @@ export const register = async (user) => {
     if (!user.password || user.password.length < 8) return false;
     try {
         const res = await api.post("/register", user);
-		console.info(res);
-        if (res.status === 200 && res.data.token) {
-            return { token: res.data.token, user: res.data.user.name };
+        if ((res.status === 200 || res.status === 201) && res.data.token) {
+            return { token: res.data.token, name: res.data.user.name };
         }
         return false;
     } catch (error) {

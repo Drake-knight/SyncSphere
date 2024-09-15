@@ -59,9 +59,6 @@ const CollaborativeEditor = () => {
             content,
             styles: { isBold, isItalic, isUnderline }
         })
-        .then(response => {
-            console.log('Document saved successfully');
-        })
         .catch(error => {
             console.error('Error saving document:', error);
         });
