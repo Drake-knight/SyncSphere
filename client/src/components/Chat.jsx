@@ -71,18 +71,22 @@ const Chat = () => {
     };
 
     return (
-        <Container maxWidth="1000px" style={{ display: 'flex', flexDirection: 'column', height: '60vh', backgroundColor: '#0B051D' }}>
-            <Paper style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto', height:'1vh',padding: '5px', backgroundColor: '#343849', border: '1px solid #4A5FBD' }}>
+        <Container maxWidth="md" style={{ display: 'flex', flexDirection: 'column', height: '60vh', backgroundColor: '#0B051D' }}>
+            <Paper style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto', padding: '5px', backgroundColor: '#343849', border: '1px solid #4A5FBD' }}>
                 <Typography variant="h6" gutterBottom style={{ backgroundColor: '#4A5FBD', color: 'white', padding: '5px', borderRadius: '4px' }}>
                     Chats
                 </Typography>
                 <Divider style={{ marginBottom: '10px' }} />
-                <List>
+                <List style={{ flexGrow: 1, overflowY: 'auto' }}>
                     {messages.map((msg, index) => (
-                        <ListItem key={index} style={{ padding: '6px 6px', backgroundColor: '#4A5FBD', borderRadius: '5px', marginBottom: '3px', height: '50px' }}>
+                        <ListItem key={index} style={{ padding: '6px', backgroundColor: '#4A5FBD', borderRadius: '5px', marginBottom: '3px', wordBreak: 'break-word', maxWidth: '100%' }}>
                             <ListItemText
-                                primary={<strong style={{ fontSize: '0.9rem' }}>{msg.sender?.name || 'Unknown'}</strong>}
-                                secondary={<span style={{ fontSize: '0.8rem' }}>{msg.content}</span>}
+                                primary={<strong style={{ fontSize: '0.9rem', maxWidth: '80%', wordBreak: 'break-word' }}>{msg.sender?.name || 'Unknown'}</strong>}
+                                secondary={
+                                    <span style={{ fontSize: '0.8rem', whiteSpace: 'pre-wrap', maxWidth: '80%', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                                        {msg.content}
+                                    </span>
+                                }
                             />
                         </ListItem>
                     ))}
@@ -94,15 +98,15 @@ const Chat = () => {
                     variant="outlined"
                     fullWidth
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}    
+                    onChange={(e) => setMessage(e.target.value)}
                     onKeyPress={(e) => {
                         if (e.key === 'Enter') {
                             handleSendMessage();
                         }
                     }}
                     placeholder="Type a message..."
-                    color='white'
-                    style={{ marginRight: '10px',  border:'1px solid #4A5FBD', color:'white'}}
+                    style={{ marginRight: '10px', color: 'white', borderColor: '#4A5FBD' }}
+                    InputProps={{ style: { color: 'white' } }} // Ensures text inside input is white
                 />
                 <Button
                     variant="contained"

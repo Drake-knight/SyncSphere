@@ -67,7 +67,7 @@ const WorkspaceDetails = () => {
         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '30px' }}>
           <button
             style={{
-              width: '400px', // Set width here
+              width: '300px', // Set width here
               padding: '10px',
               backgroundColor: showTasks ? '#4A5FBD' : '#FF5353',
               color: 'white',
@@ -82,7 +82,7 @@ const WorkspaceDetails = () => {
           </button>
           <button
             style={{
-              width: '400px', // Set width here
+              width: '300px', // Set width here
               padding: '10px',
               backgroundColor: showChat ? '#4A5FBD' : '#FF5353',
               color: 'white',
@@ -97,7 +97,7 @@ const WorkspaceDetails = () => {
           </button>
           <button
             style={{
-              width: '400px', // Set width here
+              width: '300px', // Set width here
               padding: '10px',
               backgroundColor: showEditor ? '#4A5FBD' : '#FF5353',
               color: 'white',

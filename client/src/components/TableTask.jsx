@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import api from '../utils/axios';
 import './TableTask.css';
-import { fetchTasks, addTask } from './api';
-import Sidebar from './Sidebar';
 
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
@@ -15,16 +14,15 @@ const TaskTable = () => {
   });
 
   useEffect(() => {
-    const getTasks = async () => {
+    const fetchTasks = async () => {
       try {
-        const tasks = await fetchTasks();
-        setTasks(tasks);
+        const response = await api.get('/tasks');
+        setTasks(response.data.tasks);
       } catch (error) {
-        console.error('Failed to fetch tasks:', error);
+        console.error('Error fetching tasks:', error);
       }
     };
-
-    getTasks();
+    fetchTasks();
   }, []);
 
   const handleInputChange = (e) => {
@@ -38,8 +36,8 @@ const TaskTable = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const addedTask = await addTask(newTask);
-      setTasks((prevTasks) => [...prevTasks, addedTask]);
+      const response = await api.post('/tasks', newTask);
+      setTasks((prevTasks) => [...prevTasks, response.data.task]);
       setNewTask({
         title: '',
         description: '',
@@ -49,12 +47,22 @@ const TaskTable = () => {
         workspace: '',
       });
     } catch (error) {
-      console.error('Failed to add task:', error);
+      console.error('Error adding task:', error);
     }
   };
 
-  const toggleStatus = async (taskId) => {
-    // Implement status update logic if needed
+  const toggleStatus = async (taskId, currentStatus) => {
+    const updatedStatus = currentStatus === 'completed' ? 'pending' : 'completed';
+    try {
+      const response = await api.put(`/tasks/${taskId}`, { status: updatedStatus });
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task._id === taskId ? { ...task, status: response.data.task.status } : task
+        )
+      );
+    } catch (error) {
+      console.error('Error updating task status:', error);
+    }
   };
 
   return (
@@ -81,11 +89,11 @@ const TaskTable = () => {
                 <td>{task.description}</td>
                 <td className={`status ${task.status}`}>{task.status}</td>
                 <td>{new Date(task.dueDate).toLocaleDateString()}</td>
-                <td>{task.assignedTo}</td>
-                <td>{task.workspace}</td>
+                <td>{task.assignedTo?.name || task.assignedTo}</td>
+                <td>{task.workspace?.name || task.workspace}</td>
                 <td>{new Date(task.createdAt).toLocaleDateString()}</td>
                 <td>
-                  <button onClick={() => toggleStatus(task._id)}>
+                  <button onClick={() => toggleStatus(task._id, task.status)}>
                     {task.status === 'completed' ? 'Mark as Pending' : 'Mark as Completed'}
                   </button>
                 </td>
@@ -112,16 +120,12 @@ const TaskTable = () => {
               onChange={handleInputChange}
               placeholder="Description"
             />
-            <div >
-            <select
-              name="status"
-              value={newTask.status}
-              onChange={handleInputChange}
-            >
-              <option value="pending">Pending</option>
-              <option value="in-progress">In Progress</option>
-              <option value="completed">Completed</option>
-            </select>
+            <div>
+              <select name="status" value={newTask.status} onChange={handleInputChange}>
+                <option value="pending">Pending</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
             </div>
             <input
               type="date"
