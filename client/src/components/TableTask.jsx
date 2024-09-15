@@ -179,20 +179,67 @@ const handleSubmit = async (e) => {
               value={newTask.dueDate}
               onChange={handleInputChange}
             />
-
             <Select
-              isMulti
-              name="assignedTo"
-              options={members.map((member) => ({ value: member._id, label: member.name }))}
-              value={members.filter(member => newTask.assignedTo.includes(member._id)).map(member => ({
-                value: member._id,
-                label: member.name,
-              }))}
-              onChange={handleAssignedToChange}
-              placeholder="Select members..."
-              className="basic-multi-select"
-              classNamePrefix="select"
-            />
+  isMulti
+  name="assignedTo"
+  options={members.map((member) => ({ value: member._id, label: member.name }))}
+  value={members.filter(member => newTask.assignedTo.includes(member._id)).map(member => ({
+    value: member._id,
+    label: member.name,
+  }))}
+  onChange={handleAssignedToChange}
+  placeholder="Select members..."
+  className="basic-multi-select"
+  classNamePrefix="select"
+  styles={{
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: '#343849',  // Change input field background color
+      border: '1px solid #ccc',
+      boxShadow: 'none',
+      padding: '5px',
+      color: 'white',  // Change input text color to white
+      '&:hover': {
+        borderColor: '#888',
+      },
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: 'white',  // Change the selected value text color
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: 'white',  // Change input text color
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      padding: '10px',
+      backgroundColor: state.isSelected ? '#007bff' : state.isFocused ? '#e0e0e0' : '#fff',
+      color: state.isSelected ? 'white' : 'black',
+    }),
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: '#f0f0f0',
+      borderRadius: '4px',
+    }),
+    multiValueLabel: (provided) => ({
+      ...provided,
+      fontSize: '12px',
+    }),
+    multiValueRemove: (provided) => ({
+      ...provided,
+      backgroundColor: '#ccc',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: '#888',
+        color: 'white',
+      },
+    }),
+  }}
+/>
+
+
 
           </div>
           <button type="submit">Add Task</button>
