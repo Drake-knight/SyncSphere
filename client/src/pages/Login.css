@@ -21,6 +21,10 @@ body {
     align-items: center;
     justify-content: space-evenly;
     border-image: linear-gradient(to right, #4A5FBD, #FF5353) 1; 
+    margin: auto;
+    transform: translateY(0%);
+    position: relative;
+    top: 50%;
 }
 
 

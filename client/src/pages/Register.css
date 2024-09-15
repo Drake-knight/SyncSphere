@@ -10,6 +10,19 @@ body {
     height: 100vh;
 }
 
+/* .register {
+    background-color: #3438497f;
+    border: 1px solid transparent;
+    border-radius: 1%;
+    width: 30vw;
+    height: 50vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-image: linear-gradient(to right, #4A5FBD, #FF5353) 1; 
+    
+} */
 .register {
     background-color: #3438497f;
     border: 1px solid transparent;
@@ -21,6 +34,10 @@ body {
     align-items: center;
     justify-content: space-evenly;
     border-image: linear-gradient(to right, #4A5FBD, #FF5353) 1; 
+    margin: auto; /* Center horizontally */
+    transform: translateY(0%); /* Adjust for height */
+    position: relative;
+    top: 50%; /* Center vertically */
 }
 
 

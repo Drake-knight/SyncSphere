@@ -1,76 +1,76 @@
 /* Container styling to align content to the right */
 .task-table-container {
-    display: flex;
-    justify-content: flex-end; /* Aligns content to the right */
-    padding: 20px; /* Optional: Add padding if needed */
-  }
-  
-  /* Table styling */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  th, td {
-    border: 1px solid #4A5FBD;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #FF5353;
-    font-weight: bold;
-  }
-  
-  td {
-    background-color: #0B051D;
-  }
-  
-  /* Status column styling */
-  td.status {
-    color: rgb(0, 255, 21); /* Red color for status text */
-    font-weight: bold;
-  }
-  
-  /* Form styling */
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-  }
-  
-  /* Form group styling */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
-    margin-bottom: 20px;
-    padding: 10px;
-  }
-  input, select {
-    padding: 8px;
-    font-size: 16px;
-    width: 76%;
-    box-sizing: border-box;
-    /* border: 1px solid #ccc;s Light gray border for consistency */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #343849; /* Dark background color for all inputs */
-    /* color: white; White text color for contrast */
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  justify-content: flex-end; /* Aligns content to the right */
+  padding: 20px; /* Optional: Add padding if needed */
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+th, td {
+  border: 1px solid #4A5FBD;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #FF5353;
+  font-weight: bold;
+}
+
+td {
+  background-color: #0B051D;
+}
+
+/* Status column styling */
+td.status {
+  color: rgb(0, 255, 21); /* Red color for status text */
+  font-weight: bold;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+}
+
+/* Form group styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+  margin-bottom: 20px;
+  padding: 10px;
+}
+input, select {
+  padding: 8px;
+  font-size: 16px;
+  width: 76%;
+  box-sizing: border-box;
+  /* border: 1px solid #ccc;s Light gray border for consistency */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #343849; /* Dark background color for all inputs */
+  /* color: white; White text color for contrast */
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
