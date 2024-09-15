@@ -3,10 +3,15 @@ import Task from '../models/tasks.js';
 const createTask = async (req, res) => {
     const { title, description, status, dueDate, assignedTo, workspace } = req.body;
     try {
+        if (!Array.isArray(assignedTo)) {
+            return res.status(400).json({ message: 'assignedTo must be an array of member IDs' });
+        }
+
         const task = new Task({ title, description, status, dueDate, assignedTo, workspace });
         await task.save();
         res.status(201).json({ task });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Error creating task' });
     }
 };
@@ -24,6 +29,7 @@ const getTasks = async (req, res) => {
 
 const getTasksByWorkspace = async (req, res) => {
     const { workspace } = req.query;
+    console.log(workspace);
     try {
         const tasks = await Task.find({ workspace }).populate('assignedTo workspace');
         res.status(200).json({ tasks });
