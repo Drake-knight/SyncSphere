@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import api from '../utils/axios'; 
 import { useNavigate } from 'react-router-dom';
 
-const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
+const WorkspaceContainer = ({ workspaces, onLogout }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [token, setToken] = useState('');
   const [isJoining, setIsJoining] = useState(false);
@@ -97,14 +97,6 @@ const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
                   onClick={() => handleGoToWorkspace(workspace)}
                 >
                   Go to Workspace
-                </Button>
-                <Button
-                  variant="contained"
-                  color="error"
-                  sx={{ flex: 1 }}
-                  onClick={() => onDelete(index)}
-                >
-                  Delete Workspace
                 </Button>
               </Box>
             </Box>
