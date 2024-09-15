@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import api from '../utils/axios'; 
 import './CollaborativeEditor.css';
 import debounce from 'lodash.debounce';
+import jsPDF from 'jspdf';
 
 const socket = io('http://localhost:5100');
 
@@ -28,7 +29,6 @@ const CollaborativeEditor = () => {
                 console.error('Error loading document:', error);
             });
 
-    
         socket.on('updateContent', (newContent) => {
             setContent(newContent);
         });
@@ -95,6 +95,13 @@ const CollaborativeEditor = () => {
         handleSave();
     };
 
+
+    const handleDownloadPdf = () => {
+        const doc = new jsPDF();
+        doc.text(content, 10, 10);
+        doc.save('document.pdf');
+    };
+
     return (
         <div className="CollaborativeEditor">
             <div className="controls">
@@ -102,6 +109,7 @@ const CollaborativeEditor = () => {
                 <button onClick={handleItalic} className={isItalic ? 'active' : ''}>I</button>
                 <button onClick={handleUnderline} className={isUnderline ? 'active' : ''}>U</button>
                 <button onClick={handleSave} className="save-button">Save</button>
+                <button onClick={handleDownloadPdf} className="download-button">Download</button>
             </div>
             <textarea
                 value={content}

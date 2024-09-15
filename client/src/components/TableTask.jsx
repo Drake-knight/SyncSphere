@@ -1,28 +1,50 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';  
 import api from '../utils/axios';
 import './TableTask.css';
 
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
+  const [members, setMembers] = useState([]);
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    status: 'pending',
+    status: 'in-progress',
     dueDate: '',
-    assignedTo: '',
-    workspace: '',
+    assignedTo: [],
+    workspace: localStorage.getItem('selectedWorkspaceId') || '',
   });
+
+  const workspaceId = localStorage.getItem('selectedWorkspaceId');
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await api.get('/tasks');
+        const response = await api.get('/tasks/workspace', {
+          params: { workspace: workspaceId },
+        });
         setTasks(response.data.tasks);
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     };
     fetchTasks();
+
+    const fetchMembers = async () => {
+      try {
+        if (workspaceId) {
+          const response = await api.get('/workspace/members', {
+            params: { workspaceId }  
+          });
+          setMembers(response.data.members);
+        } else {
+          console.error('No workspace ID found in localStorage');
+        }
+      } catch (error) {
+        console.error('Error fetching members:', error);
+      }
+    };
+    fetchMembers();
   }, []);
 
   const handleInputChange = (e) => {
@@ -33,23 +55,47 @@ const TaskTable = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleAssignedToChange = (selectedOptions) => {
+    const selectedMemberIds = selectedOptions ? selectedOptions.map(option => option.value) : [];
+    setNewTask((prevTask) => ({
+      ...prevTask,
+      assignedTo: selectedMemberIds,
+    }));
+  };
+
+const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const workspaceId = localStorage.getItem('selectedWorkspaceId');
+    
+    const taskWithWorkspace = {
+        ...newTask,
+        workspace: workspaceId,
+    };
+
     try {
-      const response = await api.post('/tasks', newTask);
-      setTasks((prevTasks) => [...prevTasks, response.data.task]);
+      const response = await api.post('/tasks', taskWithWorkspace);
+
+      const updatedTask = {
+        ...response.data.task,
+        assignedTo: response.data.task.assignedTo.map(memberId => 
+          members.find(member => member._id === memberId) || memberId
+        )
+      };
+
+      setTasks((prevTasks) => [...prevTasks, updatedTask]);
       setNewTask({
         title: '',
         description: '',
         status: 'pending',
         dueDate: '',
-        assignedTo: '',
+        assignedTo: [],
         workspace: '',
       });
     } catch (error) {
       console.error('Error adding task:', error);
     }
-  };
+};
 
   const toggleStatus = async (taskId, currentStatus) => {
     const updatedStatus = currentStatus === 'completed' ? 'pending' : 'completed';
@@ -77,7 +123,6 @@ const TaskTable = () => {
               <th>Status</th>
               <th>Due Date</th>
               <th>Assigned To</th>
-              <th>Workspace</th>
               <th>Created At</th>
               <th>Action</th>
             </tr>
@@ -89,8 +134,9 @@ const TaskTable = () => {
                 <td>{task.description}</td>
                 <td className={`status ${task.status}`}>{task.status}</td>
                 <td>{new Date(task.dueDate).toLocaleDateString()}</td>
-                <td>{task.assignedTo?.name || task.assignedTo}</td>
-                <td>{task.workspace?.name || task.workspace}</td>
+                <td>
+                  {task.assignedTo.map(member => member.name || member).join(', ')}
+                </td>
                 <td>{new Date(task.createdAt).toLocaleDateString()}</td>
                 <td>
                   <button onClick={() => toggleStatus(task._id, task.status)}>
@@ -133,21 +179,21 @@ const TaskTable = () => {
               value={newTask.dueDate}
               onChange={handleInputChange}
             />
-            <input
-              type="text"
+
+            <Select
+              isMulti
               name="assignedTo"
-              value={newTask.assignedTo}
-              onChange={handleInputChange}
-              placeholder="Assigned To"
+              options={members.map((member) => ({ value: member._id, label: member.name }))}
+              value={members.filter(member => newTask.assignedTo.includes(member._id)).map(member => ({
+                value: member._id,
+                label: member.name,
+              }))}
+              onChange={handleAssignedToChange}
+              placeholder="Select members..."
+              className="basic-multi-select"
+              classNamePrefix="select"
             />
-            <input
-              type="text"
-              name="workspace"
-              value={newTask.workspace}
-              onChange={handleInputChange}
-              placeholder="Workspace"
-              required
-            />
+
           </div>
           <button type="submit">Add Task</button>
         </form>

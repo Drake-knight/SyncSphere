@@ -44,10 +44,8 @@ const inviteUser = async (req, res) => {
 
         const token = jwt.sign({ workspaceId, email }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-        const invitationLink = `${process.env.FRONTEND_URL}/join-workspace?token=${token}`;
 
-
-        res.status(200).json({ message: 'Invitation link sent', invitationLink });
+        res.status(200).json({ message: 'Token sent', token });
     } catch (error) {
         res.status(500).json({ message: 'Error inviting user' });
     }

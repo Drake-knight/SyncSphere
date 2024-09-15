@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import Chat from './Chat'; 
 import TableTask from './TableTask';
 import CollaborativeEditor from './CollaborativeEditor';
+import api from '../utils/axios';
 
 const WorkspaceDetails = () => {
   const location = useLocation();

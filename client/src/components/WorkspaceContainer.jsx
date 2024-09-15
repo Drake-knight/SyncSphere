@@ -1,22 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'; // Import ExitToAppIcon
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import api from '../utils/axios'; 
 import { useNavigate } from 'react-router-dom';
 
 const WorkspaceContainer = ({ workspaces, onDelete, onLogout }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [token, setToken] = useState('');
+  const [isJoining, setIsJoining] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  
-console.log(workspaces);
 
-const names = workspaces.map(workspace => workspace.name);
-console.log(names);
   const handleGoToWorkspace = (workspace) => {
     navigate(`/workspace/${workspace.name}`, { state: { workspace } });
   };
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setToken('');
+    setErrorMessage('');
+  };
+
+  const handleJoinWorkspace = async () => {
+    setIsJoining(true);
+    setErrorMessage('');
+    try {
+      await api.post('/workspace/join', { token });
+      handleCloseDialog();
+      window.location.reload();
+    } catch (error) {
+      console.error('Error joining workspace:', error);
+      setErrorMessage('Failed to join workspace. Please check the token and try again.');
+    } finally {
+      setIsJoining(false);
+    }
+  };
+
   return (
-    <div style={{ paddingBottom: '60px' }}> {/* Ensure padding for content */}
+    <div style={{ paddingBottom: '60px' }}>
       <div style={{ textAlign: 'center', paddingTop: '20px' }}>
         <Typography variant="h4" sx={{ marginBottom: 3 }}>
           Your Workspaces
@@ -78,17 +110,26 @@ console.log(names);
             </Box>
           ))}
         </Box>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleOpenDialog}
+          sx={{ marginTop: 3 }}
+        >
+          Join Workspace
+        </Button>
       </div>
+
       <Box
         sx={{
           position: 'fixed',
           bottom: 0,
           right: 0,
-          padding:0,
+          padding: 0,
           display: 'flex',
           justifyContent: 'flex-end',
-          backgroundColor: '#FF5353', // Optional: adds background to avoid overlap issues
-          boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)', // Optional: adds shadow for better visibility
+          backgroundColor: '#FF5353',
+          boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.1)',
         }}
       >
         <Button
@@ -100,6 +141,38 @@ console.log(names);
           Logout
         </Button>
       </Box>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog} PaperProps={{ sx: { backgroundColor: '#0b051d', color: 'white' } }}>
+        <DialogTitle sx={{ backgroundColor: '#0b051d', color: 'white' }}>Join Workspace</DialogTitle>
+        <DialogContent sx={{ backgroundColor: '#0b051d', color: 'white' }}>
+          <TextField
+            fullWidth
+            margin="dense"
+            label="Token"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' } }}
+          />
+          {errorMessage && (
+            <Typography variant="body2" color="error" sx={{ marginTop: 1 }}>
+              {errorMessage}
+            </Typography>
+          )}
+        </DialogContent>
+        <DialogActions sx={{ backgroundColor: '#0b051d', color: 'white' }}>
+          <Button onClick={handleCloseDialog} color="primary">
+            Cancel
+          </Button>
+          <Button
+            onClick={handleJoinWorkspace}
+            color="primary"
+            disabled={isJoining}
+          >
+            {isJoining ? 'Joining...' : 'Join Workspace'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

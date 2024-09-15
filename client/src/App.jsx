@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import WorkspaceContainer from './components/WorkspaceContainer';
-import WorkspaceDetails from './components/WorkspaceDetails';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'; 
+import WorkspaceDetails from './components/WorkspaceDetails'; 
 import Login from './pages/Login';
 import Register from './pages/Register'; 
 import './App.css'; 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+
 import api from './utils/axios';
 
 function App() {
@@ -80,13 +78,6 @@ function App() {
                         placeholder="Enter workspace name"
                         value={workspaceName}
                         onChange={(e) => setWorkspaceName(e.target.value)}
-                        className="workspace-input"
-                      />
-                      <input
-                        type="text"
-                        placeholder="Enter Purpose"
-                        value={workspacePurpose}
-                        onChange={(e) => setWorkspacePurpose(e.target.value)}
                         className="workspace-input"
                       />
                       <button
