@@ -74,3 +74,73 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+/* Container of the Select input */
+.basic-multi-select {
+  width: 76%;
+  font-size: 14px;
+}
+
+/* Custom styling for the dropdown menu */
+.basic-multi-select .select__control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  box-shadow: none;
+}
+
+.basic-multi-select .select__control:hover {
+  border-color: #888;
+}
+
+.basic-multi-select .select__value-container {
+  padding: 5px;
+}
+
+.basic-multi-select .select__indicator-separator {
+  display: none;
+}
+
+.basic-multi-select .select__dropdown-indicator {
+  color: #888;
+}
+
+.basic-multi-select .select__menu {
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.basic-multi-select .select__option {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.basic-multi-select .select__option--is-selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.basic-multi-select .select__option--is-focused {
+  background-color: #e0e0e0;
+}
+
+/* Styling for multi-select tags */
+.basic-multi-select .select__multi-value {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.basic-multi-select .select__multi-value__label {
+  font-size: 12px;
+}
+
+.basic-multi-select .select__multi-value__remove {
+  background-color: #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.basic-multi-select .select__multi-value__remove:hover {
+  background-color: #0B051D;
+  color: white;
+}
