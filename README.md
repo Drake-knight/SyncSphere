@@ -2,6 +2,10 @@
 
 SyncSphere is a project management application that allows users to create and manage workspaces. This repository contains the source code for both the client and server.
 
+## Deployed Application
+
+You can access the deployed application [here](https://syncsphere.netlify.app/).
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
@@ -162,9 +166,6 @@ To avoid issues, users are advised to **type a little slower** when using SyncSp
 - **Authentication**: JWT (JSON Web Tokens)
 - **Deployment**: Render (for backend), Netlify (for frontend)
 
-## Deployed Application
-
-You can access the deployed application [here](https://syncsphere.netlify.app/).
 
 
 ## License
