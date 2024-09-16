@@ -153,6 +153,20 @@ Each workspace comes with a range of collaborative tools for efficient team mana
 Due to time constraints, the backend of the platform has been **deployed on Render** instead of AWS. While this allowed us to quickly get the platform up and running, we are experiencing some response latency, particularly with the real-time **Socket.io** functionality.
 To avoid issues, users are advised to **type a little slower** when using SyncSphere.
 
+## Tech Stack
+
+- **Frontend**: React.js, CSS, HTML, JavaScript
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Real-Time Communication**: Socket.io
+- **Authentication**: JWT (JSON Web Tokens)
+- **Deployment**: Render (for backend), Netlify (for frontend)
+
+## Deployed Application
+
+You can access the deployed application [here](https://syncsphere.netlify.app/).
+
+
 ## License
     
 ```plaintext
