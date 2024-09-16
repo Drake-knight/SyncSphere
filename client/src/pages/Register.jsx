@@ -9,6 +9,7 @@ function Register({ setIsLoggedIn }) {
     const [password, setPassword] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const [, navigate] = useLocation();
 
     const updateName = (event) => {
@@ -30,9 +31,11 @@ function Register({ setIsLoggedIn }) {
             return;
         }
         setIsDisabled(true);
+        setIsLoading(true); 
         setErrorMessage(""); 
         const response = await register({ name, email, password });
         setIsDisabled(false);
+        setIsLoading(false); 
         if (response && response.token) {
             localStorage.setItem("jwtToken", response.token);
             localStorage.setItem("userName", response.name); 
@@ -79,6 +82,9 @@ function Register({ setIsLoggedIn }) {
                     <div className="error-message">{errorMessage}</div>
                 )}
                 <input type="submit" value="REGISTER" id="register-button" disabled={isDisabled} />
+                {isLoading && (
+                    <div className="loading-message">Registering...</div> 
+                )}
                 <div className="login-redirect">
                     Already have an account? <a href="/login">Login</a>
                 </div>
