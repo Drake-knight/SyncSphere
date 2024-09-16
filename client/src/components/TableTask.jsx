@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';  
 import api from '../utils/axios';
 import './TableTask.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TaskTable = () => {
   const [tasks, setTasks] = useState([]);
@@ -26,6 +28,7 @@ const TaskTable = () => {
         setTasks(response.data.tasks);
       } catch (error) {
         console.error('Error fetching tasks:', error);
+        toast.error('Error fetching tasks', { className: 'toast-custom' });
       }
     };
     fetchTasks();
@@ -39,9 +42,11 @@ const TaskTable = () => {
           setMembers(response.data.members);
         } else {
           console.error('No workspace ID found in localStorage');
+          toast.error('No workspace ID found in localStorage', { className: 'toast-custom' });
         }
       } catch (error) {
         console.error('Error fetching members:', error);
+        toast.error('Error fetching members', { className: 'toast-custom' });
       }
     };
     fetchMembers();
@@ -63,7 +68,7 @@ const TaskTable = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const workspaceId = localStorage.getItem('selectedWorkspaceId');
@@ -92,10 +97,12 @@ const handleSubmit = async (e) => {
         assignedTo: [],
         workspace: '',
       });
+      toast.success('Task added successfully', { className: 'toast-custom' });
     } catch (error) {
       console.error('Error adding task:', error);
+      toast.error('Error adding task', { className: 'toast-custom' });
     }
-};
+  };
 
   const toggleStatus = async (taskId, currentStatus) => {
     const updatedStatus = currentStatus === 'completed' ? 'pending' : 'completed';
@@ -106,8 +113,10 @@ const handleSubmit = async (e) => {
           task._id === taskId ? { ...task, status: response.data.task.status } : task
         )
       );
+      toast.success('Task status updated successfully', { className: 'toast-custom' });
     } catch (error) {
       console.error('Error updating task status:', error);
+      toast.error('Error updating task status', { className: 'toast-custom' });
     }
   };
 
@@ -180,67 +189,64 @@ const handleSubmit = async (e) => {
               onChange={handleInputChange}
             />
             <Select
-  isMulti
-  name="assignedTo"
-  options={members.map((member) => ({ value: member._id, label: member.name }))}
-  value={members.filter(member => newTask.assignedTo.includes(member._id)).map(member => ({
-    value: member._id,
-    label: member.name,
-  }))}
-  onChange={handleAssignedToChange}
-  placeholder="Select members..."
-  className="basic-multi-select"
-  classNamePrefix="select"
-  styles={{
-    control: (provided) => ({
-      ...provided,
-      backgroundColor: '#343849', 
-      border: '1px solid #ccc',
-      boxShadow: 'none',
-      padding: '5px',
-      color: 'white',
-      '&:hover': {
-        borderColor: '#888',
-      },
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: 'white', 
-    }),
-    input: (provided) => ({
-      ...provided,
-      color: 'white', 
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      padding: '10px',
-      backgroundColor: state.isSelected ? '#007bff' : state.isFocused ? '#e0e0e0' : '#fff',
-      color: state.isSelected ? 'white' : 'black',
-    }),
-    multiValue: (provided) => ({
-      ...provided,
-      backgroundColor: '#f0f0f0',
-      borderRadius: '4px',
-    }),
-    multiValueLabel: (provided) => ({
-      ...provided,
-      fontSize: '12px',
-    }),
-    multiValueRemove: (provided) => ({
-      ...provided,
-      backgroundColor: '#ccc',
-      borderRadius: '4px',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: '#888',
-        color: 'white',
-      },
-    }),
-  }}
-/>
-
-
-
+              isMulti
+              name="assignedTo"
+              options={members.map((member) => ({ value: member._id, label: member.name }))}
+              value={members.filter(member => newTask.assignedTo.includes(member._id)).map(member => ({
+                value: member._id,
+                label: member.name,
+              }))}
+              onChange={handleAssignedToChange}
+              placeholder="Select members..."
+              className="basic-multi-select"
+              classNamePrefix="select"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: '#343849', 
+                  border: '1px solid #ccc',
+                  boxShadow: 'none',
+                  padding: '5px',
+                  color: 'white',
+                  '&:hover': {
+                    borderColor: '#888',
+                  },
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: 'white', 
+                }),
+                input: (provided) => ({
+                  ...provided,
+                  color: 'white', 
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  padding: '10px',
+                  backgroundColor: state.isSelected ? '#007bff' : state.isFocused ? '#e0e0e0' : '#fff',
+                  color: state.isSelected ? 'white' : 'black',
+                }),
+                multiValue: (provided) => ({
+                  ...provided,
+                  backgroundColor: '#f0f0f0',
+                  borderRadius: '4px',
+                }),
+                multiValueLabel: (provided) => ({
+                  ...provided,
+                  fontSize: '12px',
+                }),
+                multiValueRemove: (provided) => ({
+                  ...provided,
+                  backgroundColor: '#ccc',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    backgroundColor: '#888',
+                    color: 'white',
+                  },
+                }),
+              }}
+            />
           </div>
           <button type="submit">Add Task</button>
         </form>

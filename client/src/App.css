@@ -119,3 +119,11 @@ body {
     width: 1000px;
   }
   
+  .toast-custom {
+    background-color: #343849 !important;
+    color: white !important;
+}
+
+.toast-custom .Toastify__progress-bar {
+    background-color: white !important;
+}

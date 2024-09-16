@@ -2,6 +2,8 @@ import { useState } from "react";
 import { register } from "../utils/AuthHandler";
 import "./Register.css";
 import { useLocation } from "wouter";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register({ setIsLoggedIn }) {
     const [name, setName] = useState("");
@@ -28,6 +30,7 @@ function Register({ setIsLoggedIn }) {
         event.preventDefault();
         if (password.length < 8) {
             setErrorMessage("Password must be at least 8 characters long.");
+            toast.error("Password must be at least 8 characters long.", { className: 'toast-custom' });
             return;
         }
         setIsDisabled(true);
@@ -41,8 +44,10 @@ function Register({ setIsLoggedIn }) {
             localStorage.setItem("userName", response.name); 
             setIsLoggedIn(true);
             navigate("/"); 
+            toast.success('Registered successfully', { className: 'toast-custom' });
         } else {
             setErrorMessage("Registration failed. Please try again.");
+            toast.error("Registration failed. Please try again.", { className: 'toast-custom' });
         }
     };
 

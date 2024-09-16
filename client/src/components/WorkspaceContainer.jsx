@@ -10,6 +10,8 @@ import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import api from '../utils/axios'; 
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WorkspaceContainer = ({ workspaces, onLogout }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -39,9 +41,11 @@ const WorkspaceContainer = ({ workspaces, onLogout }) => {
       await api.post('/workspace/join', { token });
       handleCloseDialog();
       window.location.reload();
+      toast.success('Joined workspace successfully', { className: 'toast-custom' });
     } catch (error) {
       console.error('Error joining workspace:', error);
       setErrorMessage('Failed to join workspace. Please check the token and try again.');
+      toast.error('Failed to join workspace. Please check the token and try again.', { className: 'toast-custom' });
     } finally {
       setIsJoining(false);
     }

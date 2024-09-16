@@ -16,6 +16,8 @@ import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import api from '../utils/axios'; 
 import './Sidebar.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Sidebar = () => {
     const [openDialog, setOpenDialog] = React.useState(false);
@@ -31,6 +33,7 @@ const Sidebar = () => {
         localStorage.removeItem("jwtToken");
         localStorage.removeItem("userName");
         window.location.reload();
+        toast.info('Logged out successfully', { className: 'toast-custom' });
     };
 
     const handleInviteClick = async () => {
@@ -41,12 +44,24 @@ const Sidebar = () => {
             const response = await api.post('/workspace/invite', { workspaceId, email });
             setInviteCode(response.data.token || ''); 
             setErrorMessage(''); 
+            toast.success('Invite code generated successfully', { className: 'toast-custom' });
         } catch (error) {
-            if (error.response && error.response.status === 404) {
-                setErrorMessage('User not registered');
+            if (error.response) {
+                if (error.response.status === 404) {
+                    setErrorMessage('User not registered');
+                    toast.error('User not registered', { className: 'toast-custom' });
+                } else if (error.response.status === 400 && error.response.data.message === 'User is already a member') {
+                    setErrorMessage('User is already a member');
+                    toast.error('User is already a member', { className: 'toast-custom' });
+                } else {
+                    console.error('Error generating invite code:', error);
+                    setErrorMessage('An error occurred. Please try again later.');
+                    toast.error('An error occurred. Please try again later.', { className: 'toast-custom' });
+                }
             } else {
                 console.error('Error generating invite code:', error);
                 setErrorMessage('An error occurred. Please try again later.');
+                toast.error('An error occurred. Please try again later.', { className: 'toast-custom' });
             }
         } finally {
             setIsGeneratingInvite(false);
@@ -66,6 +81,7 @@ const Sidebar = () => {
 
     const handleCopyInviteCode = () => {
         navigator.clipboard.writeText(inviteCode);
+        toast.success('Invite code copied to clipboard', { className: 'toast-custom' });
     };
 
     const handleBack = () => {

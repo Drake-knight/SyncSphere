@@ -2,6 +2,8 @@ import { useState } from "react";
 import { authenticate } from "../utils/AuthHandler";
 import "./Login.css";
 import { useLocation } from "wouter";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState("");
@@ -32,8 +34,10 @@ function Login({ setIsLoggedIn }) {
             localStorage.setItem("userName", response.name); 
             setIsLoggedIn(true);
             navigate("/");
+            toast.success('Logged in successfully', { className: 'toast-custom' });
         } else {
             setErrorMessage("Invalid email or password. Please try again.");
+            toast.error('Invalid email or password. Please try again.', { className: 'toast-custom' });
         }
     };
 
