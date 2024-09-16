@@ -59,10 +59,8 @@ input, select {
   font-size: 16px;
   width: 76%;
   box-sizing: border-box;
-  /* border: 1px solid #ccc;s Light gray border for consistency */
-  border-radius: 4px; /* Rounded corners */
-  background-color: #343849; /* Dark background color for all inputs */
-  /* color: white; White text color for contrast */
+  border-radius: 4px;
+  background-color: #343849; 
 }
 
 button {
@@ -79,14 +77,11 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
-/* Container of the Select input */
 .basic-multi-select {
   width: 76%;
   font-size: 14px;
 }
 
-/* Custom styling for the dropdown menu */
 .basic-multi-select .select__control {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -129,7 +124,6 @@ button:hover {
   background-color: #e0e0e0;
 }
 
-/* Styling for multi-select tags */
 .basic-multi-select .select__multi-value {
   background-color: #f0f0f0;
   border-radius: 4px;
@@ -148,4 +142,19 @@ button:hover {
 .basic-multi-select .select__multi-value__remove:hover {
   background-color: #0B051D;
   color: white;
+}
+
+.status.pending {
+  color: red;
+  font-weight: bold;
+}
+
+.status.completed {
+  color: rgb(16, 255, 16);
+  font-weight: bold;
+}
+
+.status.in-progress {
+  color: yellow;
+  font-weight: bold;
 }
