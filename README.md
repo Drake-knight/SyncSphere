@@ -118,6 +118,40 @@ syncsphere/
 ├── LICENSE
 ├── README.md
 ```
+## Features
+
+### 1. User Registration and Login
+- Users must first **register** using their email to create an account.
+- Once registered, users can **log in** to access the platform.
+
+### 2. Workspace Management
+- After logging in, users can:
+  - **Create a new workspace**.
+  - **Join an existing workspace** using an **invitation token** from their team.
+
+### 3. Workspace Features
+Each workspace comes with a range of collaborative tools for efficient team management:
+
+#### a. Task Management
+- Users can **track tasks** assigned to everyone in the workspace.
+- Task statuses, deadlines, and progress can be easily monitored.
+
+#### b. Real-Time Chat System
+- **End-to-end chat** functionality is available for all members within the workspace.
+- Chat with team members to streamline communication without leaving the platform.
+
+#### c. Collaborative Document Editor
+- Work together on documents with the **collaborative editor**.
+- **Download** the completed documents for offline access.
+
+### 4. Invitations and Team Management
+- Use the **Invitation section** to invite team members to your workspace.
+- Share an **invitation token** to grant access to the workspace for your team.
+
+#### Known Issue: Response Latency with Socket on Render
+
+Due to time constraints, the backend of the platform has been **deployed on Render** instead of AWS. While this allowed us to quickly get the platform up and running, we are experiencing some response latency, particularly with the real-time **Socket.io** functionality.
+To avoid issues, users are advised to **type a little slower** when using SyncSphere.
 
 ## License
     
