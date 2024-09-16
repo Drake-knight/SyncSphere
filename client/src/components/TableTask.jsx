@@ -194,22 +194,22 @@ const handleSubmit = async (e) => {
   styles={{
     control: (provided) => ({
       ...provided,
-      backgroundColor: '#343849',  // Change input field background color
+      backgroundColor: '#343849', 
       border: '1px solid #ccc',
       boxShadow: 'none',
       padding: '5px',
-      color: 'white',  // Change input text color to white
+      color: 'white',
       '&:hover': {
         borderColor: '#888',
       },
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: 'white',  // Change the selected value text color
+      color: 'white', 
     }),
     input: (provided) => ({
       ...provided,
-      color: 'white',  // Change input text color
+      color: 'white', 
     }),
     option: (provided, state) => ({
       ...provided,
