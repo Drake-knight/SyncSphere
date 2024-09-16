@@ -92,10 +92,24 @@ const CollaborativeEditor = () => {
         handleSave();
     };
 
-
     const handleDownloadPdf = () => {
         const doc = new jsPDF();
-        doc.text(content, 10, 10);
+        const pageHeight = doc.internal.pageSize.height;
+        const margin = 10;
+        const lineHeight = 10;
+        const maxLineWidth = doc.internal.pageSize.width - margin * 2;
+        const lines = doc.splitTextToSize(content, maxLineWidth);
+        let cursorY = margin;
+
+        lines.forEach((line) => {
+            if (cursorY + lineHeight > pageHeight - margin) {
+                doc.addPage();
+                cursorY = margin;
+            }
+            doc.text(line, margin, cursorY);
+            cursorY += lineHeight;
+        });
+
         doc.save('document.pdf');
     };
 
