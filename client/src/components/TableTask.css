@@ -26,7 +26,12 @@ th {
 
 td {
   background-color: #0B051D;
+  max-width: 100px; 
+  word-break: break-word;
+  overflow-wrap: break-word; 
+  white-space: normal;
 }
+
 
 /* Status column styling */
 td.status {

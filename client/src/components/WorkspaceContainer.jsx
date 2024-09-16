@@ -144,7 +144,7 @@ const WorkspaceContainer = ({ workspaces, onLogout }) => {
             value={token}
             onChange={(e) => setToken(e.target.value)}
             InputLabelProps={{ style: { color: 'white' } }}
-            InputProps={{ style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' ,border:'1px solid #4A5FBD'} }}
           />
           {errorMessage && (
             <Typography variant="body2" color="error" sx={{ marginTop: 1 }}>
